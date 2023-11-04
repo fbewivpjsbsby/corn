@@ -75,6 +75,10 @@ jobs:
           args: --profile release
         env:
           CORN_TEST: bar
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-${{ matrix.os }}
+          path: corn/
 
   build-wasm:
     runs-on: ${{ matrix.os }}
@@ -109,6 +113,11 @@ jobs:
         run: wasm-pack test --node
         working-directory: libcorn
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-wasm-${{ matrix.os }}
+          path: corn/
+
   build-lua:
     runs-on: ubuntu-latest
     strategy:
@@ -137,3 +146,8 @@ jobs:
         with:
           command: build
           args: --features ${{ matrix.lua }}
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: build-lua-${{ matrix.os }}
+          path: corn/
