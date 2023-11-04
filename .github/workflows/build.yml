@@ -157,10 +157,3 @@ jobs:
           path: |
             libcorn/
             corn-cli
-
-      - uses: actions/upload-artifact@v3
-        with:
-          name: build-lua-${{ matrix.os }}
-          path: |
-            libcorn/
-            corn-cli
